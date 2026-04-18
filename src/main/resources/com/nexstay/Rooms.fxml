@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.nexstay.controller.RoomsController"
+      spacing="20"
+      style="-fx-background-color: #ffffff;">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20" />
+    </padding>
+
+    <!-- ── Heading ───────────────────────────────────────────────────── -->
+    <Label text="Room Management"
+           style="-fx-font-size: 26px;
+                  -fx-font-weight: bold;
+                  -fx-text-fill: #1a1a1a;" />
+
+    <!-- ── Add-room form + button ────────────────────────────────────── -->
+    <HBox spacing="24" style="-fx-alignment: CENTER_LEFT;">
+
+        <GridPane hgap="12" vgap="12" style="-fx-alignment: CENTER_LEFT;">
+
+            <!-- Row 0: Room Number -->
+            <Label text="Room Number"
+                   style="-fx-text-fill: #1a1a1a; -fx-font-weight: bold;"
+                   GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <TextField fx:id="tfRoomNumber"
+                       promptText="e.g. 105"
+                       prefWidth="160"
+                       GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+            <!-- Row 1: Room Type -->
+            <Label text="Room Type"
+                   style="-fx-text-fill: #1a1a1a; -fx-font-weight: bold;"
+                   GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <ComboBox fx:id="cbRoomType"
+                      prefWidth="160"
+                      GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <!-- Row 2: Price Per Night -->
+            <Label text="Price Per Night"
+                   style="-fx-text-fill: #1a1a1a; -fx-font-weight: bold;"
+                   GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <TextField fx:id="tfPrice"
+                       promptText="e.g. 2500"
+                       prefWidth="160"
+                       GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+            <!-- Row 3: Max Guests -->
+            <Label text="Max Guests"
+                   style="-fx-text-fill: #1a1a1a; -fx-font-weight: bold;"
+                   GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <TextField fx:id="tfMaxGuests"
+                       promptText="e.g. 2"
+                       prefWidth="160"
+                       GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+        </GridPane>
+
+        <!-- Add Room button – vertically centred beside the grid -->
+        <Button text="Add Room"
+                onAction="#handleAddRoom"
+                style="-fx-background-color: #c9a84c;
+                       -fx-text-fill: #000000;
+                       -fx-font-size: 14px;
+                       -fx-font-weight: bold;
+                       -fx-padding: 12 24 12 24;
+                       -fx-background-radius: 8;
+                       -fx-cursor: hand;" />
+
+    </HBox>
+
+    <!-- Status message -->
+    <Label fx:id="lblStatus"
+           text=""
+           style="-fx-text-fill: #1a1a1a; -fx-font-size: 13px;" />
+
+    <!-- ── Rooms table ────────────────────────────────────────────────── -->
+    <TableView fx:id="roomTable"
+               VBox.vgrow="ALWAYS"
+               style="-fx-background-color: #ffffff;
+                      -fx-table-cell-border-color: #e0e0e0;
+                      -fx-control-inner-background: #ffffff;">
+
+        <columns>
+
+            <TableColumn fx:id="colRoomNumber"
+                         text="Room No."
+                         prefWidth="100" />
+
+            <TableColumn fx:id="colRoomType"
+                         text="Type"
+                         prefWidth="120" />
+
+            <TableColumn fx:id="colPrice"
+                         text="Price / Night"
+                         prefWidth="130" />
+
+            <TableColumn fx:id="colMaxGuests"
+                         text="Max Guests"
+                         prefWidth="110" />
+
+            <TableColumn fx:id="colStatus"
+                         text="Status"
+                         prefWidth="120" />
+
+        </columns>
+
+        <placeholder>
+            <Label text="No rooms found."
+                   style="-fx-text-fill: #1a1a1a;" />
+        </placeholder>
+
+    </TableView>
+
+</VBox>

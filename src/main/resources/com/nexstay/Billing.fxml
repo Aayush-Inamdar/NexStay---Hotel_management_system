@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.nexstay.controller.BillingController"
+      spacing="20"
+      style="-fx-background-color: #ffffff;">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20" />
+    </padding>
+
+    <!-- ── Heading ───────────────────────────────────────────────────── -->
+    <Label text="Billing"
+           style="-fx-font-size: 26px;
+                  -fx-font-weight: bold;
+                  -fx-text-fill: #1a1a1a;" />
+
+    <!-- ── Billing table ─────────────────────────────────────────────── -->
+    <TableView fx:id="billingTable"
+               VBox.vgrow="ALWAYS"
+               style="-fx-background-color: #ffffff;
+                      -fx-table-cell-border-color: #e0e0e0;
+                      -fx-control-inner-background: #ffffff;">
+
+        <columns>
+
+            <TableColumn fx:id="colBillId"
+                         text="Bill ID"
+                         prefWidth="70" />
+
+            <TableColumn fx:id="colCustomerName"
+                         text="Customer Name"
+                         prefWidth="150" />
+
+            <TableColumn fx:id="colContact"
+                         text="Contact"
+                         prefWidth="120" />
+
+            <TableColumn fx:id="colRoomNumber"
+                         text="Room No."
+                         prefWidth="90" />
+
+            <TableColumn fx:id="colRoomType"
+                         text="Room Type"
+                         prefWidth="100" />
+
+            <TableColumn fx:id="colPricePerNight"
+                         text="Price / Night"
+                         prefWidth="120" />
+
+            <TableColumn fx:id="colNights"
+                         text="Nights"
+                         prefWidth="70" />
+
+            <TableColumn fx:id="colTotal"
+                         text="Total Amount"
+                         prefWidth="130" />
+
+            <TableColumn fx:id="colCheckIn"
+                         text="Check-In"
+                         prefWidth="110" />
+
+            <TableColumn fx:id="colCheckOut"
+                         text="Check-Out"
+                         prefWidth="110" />
+
+        </columns>
+
+        <placeholder>
+            <Label text="No billing records yet."
+                   style="-fx-text-fill: #1a1a1a;" />
+        </placeholder>
+
+    </TableView>
+
+    <!-- ── Revenue summary ───────────────────────────────────────────── -->
+    <HBox spacing="12" style="-fx-alignment: CENTER_LEFT;">
+
+        <Label text="Total Revenue:"
+               style="-fx-font-size: 18px;
+                      -fx-font-weight: bold;
+                      -fx-text-fill: #1a1a1a;" />
+
+        <Label fx:id="lblTotalRevenue"
+               text="₹ 0.00"
+               style="-fx-font-size: 24px;
+                      -fx-font-weight: bold;
+                      -fx-text-fill: #6b1a1a;" />
+
+    </HBox>
+
+</VBox>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.nexstay.controller.CustomersController"
+      spacing="16"
+      style="-fx-background-color: #ffffff;">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20" />
+    </padding>
+
+    <!-- ── Heading ───────────────────────────────────────────────────── -->
+    <Label text="Customers"
+           style="-fx-font-size: 26px;
+                  -fx-font-weight: bold;
+                  -fx-text-fill: #1a1a1a;" />
+
+    <!-- ── Summary row ───────────────────────────────────────────────── -->
+    <HBox spacing="12" style="-fx-alignment: CENTER_LEFT;">
+
+        <Label text="Total Customers:"
+               style="-fx-font-size: 15px;
+                      -fx-font-weight: bold;
+                      -fx-text-fill: #1a1a1a;" />
+
+        <Label fx:id="lblTotalCustomers"
+               text="0"
+               style="-fx-font-size: 15px;
+                      -fx-font-weight: bold;
+                      -fx-text-fill: #6b1a1a;" />
+
+    </HBox>
+
+    <!-- ── Customers table ────────────────────────────────────────────── -->
+    <TableView fx:id="customersTable"
+               VBox.vgrow="ALWAYS"
+               style="-fx-background-color: #ffffff;
+                      -fx-table-cell-border-color: #e0e0e0;
+                      -fx-control-inner-background: #ffffff;">
+
+        <columns>
+
+            <TableColumn fx:id="colCustomerId"
+                         text="ID"
+                         prefWidth="50" />
+
+            <TableColumn fx:id="colName"
+                         text="Guest Name"
+                         prefWidth="150" />
+
+            <TableColumn fx:id="colContact"
+                         text="Contact"
+                         prefWidth="120" />
+
+            <TableColumn fx:id="colRoomNumber"
+                         text="Room No."
+                         prefWidth="90" />
+
+            <TableColumn fx:id="colRoomType"
+                         text="Room Type"
+                         prefWidth="100" />
+
+            <TableColumn fx:id="colPricePerNight"
+                         text="Price / Night"
+                         prefWidth="120" />
+
+            <TableColumn fx:id="colCheckIn"
+                         text="Check-In"
+                         prefWidth="110" />
+
+            <TableColumn fx:id="colCheckOut"
+                         text="Check-Out"
+                         prefWidth="110" />
+
+        </columns>
+
+        <placeholder>
+            <Label text="No customer records yet."
+                   style="-fx-text-fill: #1a1a1a;" />
+        </placeholder>
+
+    </TableView>
+
+    <!-- ── Selected booking details panel ───────────────────────────── -->
+    <VBox fx:id="detailsPanel"
+          spacing="10"
+          visible="false"
+          managed="false"
+          style="-fx-background-color: #ffffff;
+                 -fx-background-radius: 8;
+                 -fx-border-color: #c9a84c;
+                 -fx-border-radius: 8;
+                 -fx-border-width: 2;">
+
+        <padding>
+            <Insets top="14" right="16" bottom="14" left="16" />
+        </padding>
+
+        <Label text="Booking Details"
+               style="-fx-font-size: 15px;
+                      -fx-font-weight: bold;
+                      -fx-text-fill: #6b1a1a;" />
+
+        <Separator style="-fx-background-color: #c9a84c;" />
+
+        <GridPane hgap="24" vgap="8">
+
+            <Label text="Customer ID:"  GridPane.columnIndex="0" GridPane.rowIndex="0"
+                   style="-fx-text-fill: #1a1a1a; -fx-font-size: 13px;" />
+            <Label fx:id="detCustomerId" text="" GridPane.columnIndex="1" GridPane.rowIndex="0"
+                   style="-fx-text-fill: #1a1a1a; -fx-font-size: 13px; -fx-font-weight: bold;" />
+
+            <Label text="Guest Name:"   GridPane.columnIndex="0" GridPane.rowIndex="1"
+                   style="-fx-text-fill: #1a1a1a; -fx-font-size: 13px;" />
+            <Label fx:id="detName" text="" GridPane.columnIndex="1" GridPane.rowIndex="1"
+                   style="-fx-text-fill: #1a1a1a; -fx-font-size: 13px; -fx-font-weight: bold;" />
+
+            <Label text="Contact:"      GridPane.columnIndex="0" GridPane.rowIndex="2"
+                   style="-fx-text-fill: #1a1a1a; -fx-font-size: 13px;" />
+            <Label fx:id="detContact" text="" GridPane.columnIndex="1" GridPane.rowIndex="2"
+                   style="-fx-text-fill: #1a1a1a; -fx-font-size: 13px; -fx-font-weight: bold;" />
+
+            <Label text="Room Number:"  GridPane.columnIndex="2" GridPane.rowIndex="0"
+                   style="-fx-text-fill: #1a1a1a; -fx-font-size: 13px;" />
+            <Label fx:id="detRoomNumber" text="" GridPane.columnIndex="3" GridPane.rowIndex="0"
+                   style="-fx-text-fill: #1a1a1a; -fx-font-size: 13px; -fx-font-weight: bold;" />
+
+            <Label text="Room Type:"    GridPane.columnIndex="2" GridPane.rowIndex="1"
+                   style="-fx-text-fill: #1a1a1a; -fx-font-size: 13px;" />
+            <Label fx:id="detRoomType" text="" GridPane.columnIndex="3" GridPane.rowIndex="1"
+                   style="-fx-text-fill: #1a1a1a; -fx-font-size: 13px; -fx-font-weight: bold;" />
+
+            <Label text="Price / Night:" GridPane.columnIndex="2" GridPane.rowIndex="2"
+                   style="-fx-text-fill: #1a1a1a; -fx-font-size: 13px;" />
+            <Label fx:id="detPrice" text="" GridPane.columnIndex="3" GridPane.rowIndex="2"
+                   style="-fx-text-fill: #1a1a1a; -fx-font-size: 13px; -fx-font-weight: bold;" />
+
+            <Label text="Check-In:"     GridPane.columnIndex="0" GridPane.rowIndex="3"
+                   style="-fx-text-fill: #1a1a1a; -fx-font-size: 13px;" />
+            <Label fx:id="detCheckIn" text="" GridPane.columnIndex="1" GridPane.rowIndex="3"
+                   style="-fx-text-fill: #1a1a1a; -fx-font-size: 13px; -fx-font-weight: bold;" />
+
+            <Label text="Check-Out:"    GridPane.columnIndex="2" GridPane.rowIndex="3"
+                   style="-fx-text-fill: #1a1a1a; -fx-font-size: 13px;" />
+            <Label fx:id="detCheckOut" text="" GridPane.columnIndex="3" GridPane.rowIndex="3"
+                   style="-fx-text-fill: #1a1a1a; -fx-font-size: 13px; -fx-font-weight: bold;" />
+
+        </GridPane>
+
+    </VBox>
+
+    <!-- ── Checkout panel ───────────────────────────────────────────────── -->
+    <HBox spacing="15" style="-fx-alignment: CENTER_LEFT;">
+
+        <Button text="Checkout Selected Customer"
+                onAction="#handleCheckout"
+                style="-fx-background-color: #c9a84c;
+                       -fx-text-fill: #000000;
+                       -fx-font-size: 14px;
+                       -fx-font-weight: bold;
+                       -fx-background-radius: 6;
+                       -fx-padding: 8 22;
+                       -fx-cursor: hand;" />
+
+    </HBox>
+
+    <!-- ── Status message ───────────────────────────────────────────────── -->
+    <Label fx:id="lblStatus"
+           text=""
+           style="-fx-font-size: 14px;
+                  -fx-font-weight: bold;" />
+
+</VBox>

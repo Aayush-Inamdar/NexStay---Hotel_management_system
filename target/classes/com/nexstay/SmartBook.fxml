@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.geometry.Insets?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.nexstay.controller.SmartBookController"
+            fitToWidth="true"
+            style="-fx-background-color: #ffffff;
+                   -fx-background: #ffffff;">
+
+    <VBox spacing="20"
+          style="-fx-background-color: #ffffff;">
+
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20" />
+        </padding>
+
+        <!-- ── Heading ─────────────────────────────────────────────────── -->
+        <Label text="Smart Book"
+               style="-fx-font-size: 26px;
+                      -fx-font-weight: bold;
+                      -fx-text-fill: #1a1a1a;" />
+
+        <Label text="Enter your budget and number of guests — we'll find the best room for you."
+               wrapText="true"
+               style="-fx-font-size: 14px;
+                      -fx-text-fill: #1a1a1a;" />
+
+        <!-- ── Search form ──────────────────────────────────────────────── -->
+        <HBox spacing="20" style="-fx-alignment: CENTER_LEFT;">
+
+            <GridPane hgap="12" vgap="12">
+
+                <!-- Budget -->
+                <Label text="Budget (₹)"
+                       style="-fx-text-fill: #1a1a1a; -fx-font-weight: bold;"
+                       GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <TextField fx:id="tfBudget"
+                           promptText="e.g. 3000"
+                           prefWidth="180"
+                           GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                <!-- Guests -->
+                <Label text="Number of Guests"
+                       style="-fx-text-fill: #1a1a1a; -fx-font-weight: bold;"
+                       GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <TextField fx:id="tfGuests"
+                           promptText="e.g. 2"
+                           prefWidth="180"
+                           GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            </GridPane>
+
+            <Button text="Find Best Room"
+                    onAction="#handleFind"
+                    style="-fx-background-color: #c9a84c;
+                           -fx-text-fill: #000000;
+                           -fx-font-size: 14px;
+                           -fx-font-weight: bold;
+                           -fx-padding: 12 24 12 24;
+                           -fx-background-radius: 8;
+                           -fx-cursor: hand;" />
+
+        </HBox>
+
+        <!-- Search status / no-match message -->
+        <Label fx:id="lblSearchStatus"
+               text=""
+               wrapText="true"
+               style="-fx-font-size: 13px; -fx-text-fill: #1a1a1a;" />
+
+        <!-- ── Result card (hidden until a match is found) ──────────────── -->
+        <VBox fx:id="resultCard"
+              spacing="6"
+              managed="false"
+              visible="false"
+              style="-fx-background-color: #ffffff;
+                     -fx-border-color: #c9a84c;
+                     -fx-border-width: 2;
+                     -fx-background-radius: 12;
+                     -fx-border-radius: 12;
+                     -fx-padding: 20;">
+
+            <Label text="Best Match"
+                   style="-fx-font-size: 13px;
+                          -fx-font-weight: bold;
+                          -fx-text-fill: #000000;" />
+
+            <Label fx:id="lblResultRoomNumber"
+                   text=""
+                   style="-fx-font-size: 22px;
+                          -fx-font-weight: bold;
+                          -fx-text-fill: #000000;" />
+
+            <Label fx:id="lblResultRoomType"   text=""
+                   style="-fx-text-fill: #000000; -fx-font-size: 14px;" />
+            <Label fx:id="lblResultPrice"      text=""
+                   style="-fx-text-fill: #000000; -fx-font-size: 14px;" />
+            <Label fx:id="lblResultMaxGuests"  text=""
+                   style="-fx-text-fill: #000000; -fx-font-size: 14px;" />
+
+        </VBox>
+
+        <!-- ── Booking form (hidden until a match is found) ─────────────── -->
+        <VBox fx:id="bookingSection"
+              spacing="16"
+              managed="false"
+              visible="false"
+              style="-fx-background-color: #ffffff;
+                     -fx-border-color: #c9a84c;
+                     -fx-border-width: 2;
+                     -fx-background-radius: 12;
+                     -fx-border-radius: 12;
+                     -fx-padding: 20;">
+
+            <Label text="Complete Your Booking"
+                   style="-fx-font-size: 16px;
+                          -fx-font-weight: bold;
+                          -fx-text-fill: #1a1a1a;" />
+
+            <GridPane hgap="12" vgap="8">
+
+                <!-- Guest Name -->
+                <Label text="Guest Name"
+                       style="-fx-text-fill: #1a1a1a; -fx-font-weight: bold;"
+                       GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <TextField fx:id="tfGuestName"
+                           promptText="Full name (letters only)"
+                           prefWidth="220"
+                           GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <Label fx:id="lblNameErr"
+                       text=""
+                       style="-fx-text-fill: #cc0000; -fx-font-size: 11px;"
+                       GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                <!-- Contact -->
+                <Label text="Contact"
+                       style="-fx-text-fill: #1a1a1a; -fx-font-weight: bold;"
+                       GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <TextField fx:id="tfContact"
+                           promptText="10-digit phone number"
+                           prefWidth="220"
+                           GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Label fx:id="lblContactErr"
+                       text=""
+                       style="-fx-text-fill: #cc0000; -fx-font-size: 11px;"
+                       GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                <!-- Check-in DatePicker -->
+                <Label text="Check-in Date"
+                       style="-fx-text-fill: #1a1a1a; -fx-font-weight: bold;"
+                       GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                <DatePicker fx:id="dpCheckIn"
+                            prefWidth="220"
+                            GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                <!-- Check-out DatePicker -->
+                <Label text="Check-out Date"
+                       style="-fx-text-fill: #1a1a1a; -fx-font-weight: bold;"
+                       GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                <DatePicker fx:id="dpCheckOut"
+                            prefWidth="220"
+                            GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <Label fx:id="lblDateErr"
+                       text=""
+                       style="-fx-text-fill: #cc0000; -fx-font-size: 11px;"
+                       GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+            </GridPane>
+
+            <Button text="Book Now"
+                    onAction="#handleBookNow"
+                    style="-fx-background-color: #c9a84c;
+                           -fx-text-fill: #000000;
+                           -fx-font-size: 14px;
+                           -fx-font-weight: bold;
+                           -fx-padding: 12 32 12 32;
+                           -fx-background-radius: 8;
+                           -fx-cursor: hand;" />
+
+            <!-- Booking result status -->
+            <Label fx:id="lblBookStatus"
+                   text=""
+                   wrapText="true"
+                   style="-fx-font-size: 13px; -fx-text-fill: #1a1a1a;" />
+
+        </VBox>
+
+    </VBox>
+</ScrollPane>
